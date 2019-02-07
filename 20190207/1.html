@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		ul,li{list-style:none;}
+		a{text-decoration:none;color:inherit;}
+		.gnb{text-align:center;}
+		.gnb a{display:block;}
+		.gnb>ul{display:inline-block;}
+		.gnb>ul>li{float:left;}
+		.gnb>ul>li+li{margin-left:1px;}
+		.gnb>ul>li>a{padding:10px 40px;background:#09F;color:#fff;}
+		.gnb>ul>li>ul{display:none;}
+		.gnb>ul>li>ul{display:none;}
+		.gnb>ul>li:hover>ul{display:block;}
+		.gnb>ul>li:hover>a{}
+		.gnb>ul>li>ul a{background:#09F;color:#fff;padding:10px 0;}
+		.gnb>ul>li>ul a:hover{background:#06F;}
+	</style>
+</head>
+<body>
+	<nav class="gnb">
+		<ul>
+			<li><a href="#">MENU1</a>
+				<ul>
+					<li><a href="#">menu 1-1</a></li>
+					<li><a href="#">menu 1-2</a></li>
+					<li><a href="#">menu 1-3</a></li>
+				</ul>
+			</li>
+			<li><a href="#">MENU2</a>
+				<ul>
+					<li><a href="#">menu 2-1</a></li>
+					<li><a href="#">menu 2-2</a></li>
+					<li><a href="#">menu 2-3</a></li>
+				</ul>
+			</li>
+			<li><a href="#">MENU3</a>
+				<ul>
+					<li><a href="#">menu 3-1</a></li>
+					<li><a href="#">menu 3-2</a></li>
+					<li><a href="#">menu 3-3</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</body>
+</html>

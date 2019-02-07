@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>WireFrame 1</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		ul,li{list-style:none;}
+		a{text-decoration:none;color:inherit;}
+		.wrap{width:1200px;margin:0 auto;}
+		.header{height:100px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;align-items:center;}
+		.logo{line-height:100px;font-size:35px;color:#09F;}
+		.gnb{display:flex;}
+		.gnb a{display:block;transition:0.3s;}
+		.gnb>li{position:relative;}
+		.gnb>li>a{padding:0 40px;color:#09F;font-size:17px;line-height:50px;}
+		.gnb>li:hover>a{background:#09F;color:#fff;}
+		.gnb>li>ul{position:absolute;left:0;right:0;display:none;}
+		.gnb:hover>li>ul{display:block;}
+		.gnb>li>ul a{background:#f5f5f5;color:#09F;text-align:center;line-height:40px;}
+		.gnb>li>ul a:hover{color:#fff;background:#09F;}
+
+		.slide{height:300px;overflow:hidden;}
+		.slide ul{width:300%;height:300px;display:flex;}
+		.slide li{width:33.33%;height:300px;}
+		.slide li:nth-child(1){background:#ffa;}
+		.slide li:nth-child(2){background:#faa;}
+		.slide li:nth-child(3){background:#afa;}
+
+		.content{display:flex;justify-content:space-between;height:160px;padding:20px 0;}
+		.content>section{width:30%;}
+		.content .title{border-bottom:1px solid #ddd;padding-bottom:10px;margin-bottom:10px;font-size:17px;}
+
+		.notice{line-height:200%;font-size:13px;}
+		.notice li{display:flex;justify-content:space-between;cursor:pointer;}
+		.notice .date{color:#aaa;}
+		.notice li:hover{background:#ffe;}
+
+		.icons ul{display:flex;justify-content:space-between;}
+		.icons li{width:30%;text-align:center;}
+		.icons a{font-size:13px;}
+		.icon_wrap{width:50px;height:50px;border-radius:50px;border:1px solid #000;margin:10px auto;}
+
+		.footer{display:flex;justify-content:space-between;align-items:center;text-align:center;border-top:1px solid #ddd;background:#aaa;color:#fff;line-height:100px;}
+		.footer-logo{width:20%;}
+		.copyright{width:60%;}
+		.sns{width:20%;}
+		.sns a{background:#fff;width:30px;height:30px;border-radius:30px;text-align:center;line-height:30px;display:inline-block;color:#000;font-size:11px;}
+
+		@media (max-width:1199px) {
+			.wrap{width:auto;margin:0 20px;}
+			.gnb>li>a{padding:0 30px;}
+			.slide{height:200px;}
+			.slide ul{height:100%;}
+			.slide li{height:100%;}
+			.content{height:auto;flex-flow:wrap;}
+			.content>section{width:49%;}
+			.content .title{font-size:21px;}
+			.icons{width:100% !important;margin-top:20px;}
+		}
+
+		@media (min-width:768px) {
+			.mobile-menu{display:none;}
+			.mobile-menu-close{display:none;}
+		}
+
+		@media (max-width:767px) {
+			.logo{font-size:30px;}
+			.gnb:target{display:block;}
+			.gnb:target+.mobile-menu-close{display:block;}
+			.mobile-menu-close{display:none;position:fixed;right:10px;top:10px;}
+			.gnb{display:none;position:fixed;right:0;top:0;bottom:0;width:300px;background:#fff;box-shadow:0 0 10px #666}
+			.gnb:before{content:"";display:block;position:fixed;left:0;right:0;top:0;bottom:0;background:#000;opacity:0.5;}
+			.gnb:after{content:"";display:block;position:fixed;width:300px;right:0;top:0;bottom:0;background:#fff}
+			.gnb>li{position:relative;z-index:10;}
+			.gnb>li>a{padding:0 20px;line-height:40px;}
+			.gnb>li>ul{position:static;display:flex;flex-flow:wrap;padding:0 20px;}
+			.gnb>li>ul li{width:50%;}
+			.gnb>li>ul a{background:#fff;line-height:30px;text-align:left;color:#000;}
+
+			.slide{height:300px;overflow:hidden;}
+			.slide ul{width:300%;height:300px;display:flex;}
+			.slide li{width:33.33%;height:300px;}
+			.slide li:nth-child(1){background:#ffa;}
+			.slide li:nth-child(2){background:#faa;}
+			.slide li:nth-child(3){background:#afa;}
+
+			.content{display:flex;justify-content:space-between;height:160px;padding:20px 0;}
+			.content>section{width:30%;}
+			.content .title{border-bottom:1px solid #ddd;padding-bottom:10px;margin-bottom:10px;font-size:17px;}
+
+			.notice{line-height:200%;font-size:13px;}
+			.notice li{display:flex;justify-content:space-between;cursor:pointer;}
+			.notice .date{color:#aaa;}
+			.notice li:hover{background:#ffe;}
+
+			.icons ul{display:flex;justify-content:space-between;}
+			.icons li{width:30%;text-align:center;}
+			.icons a{font-size:13px;}
+			.icon_wrap{width:50px;height:50px;border-radius:50px;border:1px solid #000;margin:10px auto;}
+
+			.footer{display:flex;justify-content:space-between;align-items:center;text-align:center;border-top:1px solid #ddd;background:#aaa;color:#fff;line-height:100px;}
+			.footer-logo{width:20%;}
+			.copyright{width:60%;}
+			.sns{width:20%;}
+			.sns a{background:#fff;width:30px;height:30px;border-radius:30px;text-align:center;line-height:30px;display:inline-block;color:#000;font-size:11px;}
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<header class="header">
+			<h3 class="logo"><a href="#">LOGO</a></h3>
+			<a href="#gnb" class="mobile-menu"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/220px-Hamburger_icon.svg.png" alt="menu" width="30"></a>
+			<ul id="gnb" class="gnb">
+				<li>
+					<a href="#">MENU-1</a>
+					<ul>
+						<li><a href="#">SubMenu-1</a></li>
+						<li><a href="#">SubMenu-2</a></li>
+						<li><a href="#">SubMenu-3</a></li>
+						<li><a href="#">SubMenu-4</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">MENU-2</a>
+					<ul>
+						<li><a href="#">SubMenu-1</a></li>
+						<li><a href="#">SubMenu-2</a></li>
+						<li><a href="#">SubMenu-3</a></li>
+						<li><a href="#">SubMenu-4</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">MENU-3</a>
+					<ul>
+						<li><a href="#">SubMenu-1</a></li>
+						<li><a href="#">SubMenu-2</a></li>
+						<li><a href="#">SubMenu-3</a></li>
+						<li><a href="#">SubMenu-4</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">MENU-4</a>
+					<ul>
+						<li><a href="#">SubMenu-1</a></li>
+						<li><a href="#">SubMenu-2</a></li>
+						<li><a href="#">SubMenu-3</a></li>
+						<li><a href="#">SubMenu-4</a></li>
+					</ul>
+				</li>
+			</ul>
+			<a href="#" class="mobile-menu-close">X</a>
+		</header>
+		<section class="slide">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</section>
+		<section class="content">
+			<section class="notice">
+				<h3 class="title">공지사항</h3>
+				<ul>
+					<li>
+						<a href="#">Quaerat officiis voluptatum</a>
+						<span class="date">2018-08-06</span>
+					</li>
+					<li>
+						<a href="#">Officiis sint accusantium</a>
+						<span class="date">2018-08-06</span>
+					</li>
+					<li>
+						<a href="#">Optio quisquam totam</a>
+						<span class="date">2018-08-06</span>
+					</li>
+				</ul>
+			</section>
+			<section class="banner">
+				<h3 class="title">배너</h3>
+				<div class="layer">사진</div>
+			</section>
+			<section class="icons">
+				<h3 class="title">바로가기</h3>
+				<ul>
+					<li>
+						<div class="icon_wrap"></div>
+						<p><a href="#">바로가기1</a></p>
+					</li>
+					<li>
+						<div class="icon_wrap"></div>
+						<p><a href="#">바로가기2</a></p>
+					</li>
+					<li>
+						<div class="icon_wrap"></div>
+						<p><a href="#">바로가기3</a></p>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<footer class="footer">
+			<div class="footer-logo">로고</div>
+			<div class="copyright">
+				copyright &copy; 2018 <strong>junil hwang</strong> all right reserved.
+			</div>
+			<div class="sns">
+				<a href="#">F</a>
+				<a href="#">T</a>
+				<a href="#">I</a>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.layer{display:none;position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0, 0.5);z-index:100;justify-content:center;align-items:center;}
+		.layer:target{display:flex;}
+		.layer .box {
+			background: #fff;
+			padding: 30px;
+			margin: 20px;
+			position: relative;
+		}
+		.layer .box .close {
+			position: absolute;
+			right: 0;
+			top: 0;
+			background: #09F;
+			color: #fff;
+			padding: 7px 10px;
+			display: block;
+			text-decoration: none;
+			opacity: 0.5;
+			transition: 0.5s;
+		}
+		.layer .box .close:hover{opacity:1;}
+		.opener{position:relative;}
+	</style>
+</head>
+<body>
+	<div id="popup1" class="layer">
+		<div class="box">
+			<a href="#" class="close">X</a>
+			레이어 1
+		</div>
+	</div>
+	<div id="popup2" class="layer">
+		<div class="box">
+			<a href="#" class="close">X</a>
+			레이어 2
+		</div>
+	</div>
+	<div id="popup3" class="layer">
+		<div class="box">
+			<a href="#" class="close">X</a>
+			레이어 3
+		</div>
+	</div>
+	<div id="popup4" class="layer">
+		<div class="box">
+			<a href="#" class="close">X</a>
+			레이어 4
+		</div>
+	</div>
+	<a href="#popup1" class="opener">오픈 1</a>
+	<a href="#popup2" class="opener">오픈 2</a>
+	<a href="#popup3" class="opener">오픈 3</a>
+	<a href="#popup4" class="opener">오픈 4</a>
+</body>
+</html>

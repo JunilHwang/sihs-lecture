@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		ul,li{list-style:none;}
+		.slide{width:1000px;margin:0 auto;overflow:hidden;}
+		.slide ul{display:flex;width:300%;height:300px;animation:slide 6s infinite;}
+		.slide li{width:calc(100% / 3);}
+		.slide li:nth-child(1){background:#ffa;}
+		.slide li:nth-child(2){background:#afa;}
+		.slide li:nth-child(3){background:#faa;}
+		@keyframes slide {
+			0%{margin-left:0;}
+			20%{margin-left:0;}
+			33%{margin-left:-100%;}
+			53%{margin-left:-100%;}
+			66%{margin-left:-200%;}
+			86%{margin-left:-200%;}
+			100%{margin-left:0;}
+		}
+	</style>
+</head>
+<body>
+	<div class="slide">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>
