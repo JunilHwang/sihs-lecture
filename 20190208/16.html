@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var time = 300
+		function fun1 (){
+			return new Promise(function (resolve, reject) {
+				console.log(time)
+				setTimeout(function () {
+					resolve() // then에서 받은 인자(함수)가 실행됨
+				}, time+=300)
+			})
+		}
+		fun1()
+			.then(fun1)
+			.then(fun1)
+			.then(fun1)
+			.then(fun1)
+			.then(fun1)
+			.then(fun1)
+		console.log('내가 먼저 실행돼요')
+	</script>
+</body>
+</html>

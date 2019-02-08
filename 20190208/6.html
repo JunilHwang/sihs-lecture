@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="a.js"></script> <!-- 강이수 제작 -->
+	<script src="b.js"></script> <!-- 나형준 제작 -->
+	<script src="c.js"></script> <!-- 박종관 제작 -->
+</head>
+<body>
+	<script>
+		var mod = {};
+		// a.js
+		(function () {
+			var obj = {a: 1, b: 2}
+			function fun1 () {
+				console.log(obj)
+			}
+			mod.a = {
+				obj: obj,
+				fun1, fun1
+			}
+		}());
+		mod.a = mod.a || null;
+
+		// b.js
+		(function () {
+			var obj = {a: 3, b: 4}
+			function fun2 () {
+				console.log(obj)
+			}
+			mod.b = {
+				obj: obj,
+				fun2, fun2
+			}
+		}());
+		mod.b = mod.b || null;
+
+		// c.js
+		(function (){
+			var obj = {a: 5, b: 6}
+			function fun3 () {
+				console.log(obj)
+			}
+			mod.c = {
+				obj: obj,
+				fun3, fun3
+			}
+		}());
+		mod.c = mod.c || null
+
+		// d.js
+		mod.d = mod.d || null
+
+		console.log(mod)
+	</script>
+</body>
+</html>

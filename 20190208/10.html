@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*
+		  stack : function과 관련된 변수
+		  heap  : 동적 할당 변수
+		  data  : 전역 변수
+		  text  : 코드
+		*/
+		// register
+		// cache
+		// disk(rom)
+		// register / cache(1 ~ 3) / memory / disk
+		var c = 10
+		function fun2 () {
+			var d = 10
+			for (var i = 0; i < 10000; i++) {
+				console.log(c, d)
+			}
+		}
+		
+		function fun1 () {
+			var a = 10
+			console.log(a)
+			return function () {
+				console.log(++a)
+			}
+		}
+		var a = fun1()
+		var b = fun1()
+		var c = fun1()
+		var d = fun1()
+		var e = fun1()
+
+		a()
+		a()
+		a()
+
+		b()
+		b()
+		b()
+
+		c()
+		c()
+		c()
+
+		d()
+		d()
+		d()
+
+		e()
+		e()
+		e()
+
+	</script>
+</body>
+</html>

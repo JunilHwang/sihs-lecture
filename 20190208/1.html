@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// es5
+		console.log(a)
+		var a = 1
+		function b () {
+			console.log(a)
+			var a = 2
+		}
+		b()
+
+		// es6
+		// console.log(c, d) error
+		let c = 1
+		const d = 2
+		function e () {
+			// console.log(c) // error
+			let c = 3
+		}
+		e()
+
+		// var는 window에 할당됨
+		// let, const는 할당되지 않음
+		var aa = 1
+		console.log(aa, window.aa)
+		let bb = 1
+		console.log(bb, window.bb)
+	</script>
+</body>
+</html>

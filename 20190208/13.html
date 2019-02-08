@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var a = [0, 1, 2, 3, 4]
+		var b = [0, 1, a]
+		console.log(a, b)
+		console.log(b[2] === a)
+		b[2][0] = 10
+		console.log(a)
+
+		function fun1 (arr) {
+			arr[0] = 100
+		}
+		function fun2 (arr) {
+			arr[0] = 1000
+			console.log('a:', a)
+			console.log('arr:', arr)
+		}
+		fun1(a)
+		fun2(a.slice())
+		console.log(a)
+	</script>
+</body>
+</html>

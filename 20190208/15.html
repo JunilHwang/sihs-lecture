@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var time = 100
+		setTimeout(function () {
+			console.log(time)
+			setTimeout(function () {
+				console.log(time)
+				setTimeout(function () {
+					console.log(time)
+					setTimeout(function () {
+						console.log(time)
+						setTimeout(function () {
+							console.log(time)
+							setTimeout(function () {
+								console.log(time)
+								setTimeout(function () {
+									console.log(time)
+										setTimeout(function () {
+											console.log(time)
+										}, time+=100)
+								}, time+=100)
+							}, time+=100)
+						}, time+=100)
+					}, time+=100)
+				}, time+=100)
+			}, time+=100)
+		}, time+=100)
+		console.log('이게 먼저 실행돼요')
+	</script>
+</body>
+</html>

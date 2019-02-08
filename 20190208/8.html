@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	!console.log('a') || console.log('b'); // a
+	// true || true
+	!console.log('a') || !console.log('b'); // a
+	// false || false
+	console.log('a') || console.log('b'); // a b
+	// false || true
+	console.log('a') || !console.log('b'); // a b
+	// false && false
+	console.log('a') && console.log('b'); // a
+	// false && true
+	console.log('a') && !console.log('b'); // a
+	// true && false
+	!console.log('a') && console.log('b'); // a b
+	// true && true
+	!console.log('a') && !console.log('b'); // a b
+	</script>
+</body>
+</html>

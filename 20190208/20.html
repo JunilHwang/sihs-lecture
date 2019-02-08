@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		class A {
+			constructor () {
+				console.log('this is a')
+				this.a = 'a'
+			}
+			get () {
+				return this.a
+			}
+			set (v) {
+				this.a = v
+			}
+			get num () {
+				console.log('num is ', this.number)
+				return this.number
+			}
+			set num (val) {
+				console.log('num change ', val)
+				this.number = val
+			}
+		}
+
+		const obj = new A()
+		console.log(obj.get())
+		obj.set(10)
+		console.log(obj.get())
+		obj.num = 10
+		alert(obj.num)
+	</script>
+</body>
+</html>

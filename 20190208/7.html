@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var a = 10 || null
+		var b = null || 10
+		var c = 10 && 20 && null
+		console.log(a)
+		console.log(b)
+		console.log(c)
+
+		function aa () {
+			console.log('aa')
+			return false
+		}
+
+		function bb () {
+			console.log('bb')
+			return 20
+		}
+
+		aa() || bb()
+		bb() || aa()
+		var d = bb() || aa()
+		console.log(d)
+		console.log(!console.log('1'))
+	</script>
+</body>
+</html>

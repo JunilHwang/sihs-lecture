@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// ES6+ spec
+		
+		// variable
+		let a = 10
+		const b = 10
+		const c = {}
+		a = 20
+		// b = 20 // error
+		c.a = 10
+		console.log(a, b, c)
+
+		// arrow function
+		const fun1 = function () {
+			return 10
+		}
+		const fun2 = () => {
+			return 10
+		}
+		const fun3 = () => () => () => () => () => fun1()
+		const fun4 = function () {
+			return function () {
+				return function () {
+					return function () {
+						return function () {
+							return fun1()
+						}
+					}
+				}
+			}
+		}
+		console.log(fun1(), fun2())
+
+		function AClass () {
+			this.a = 10
+			this.b = 20
+			console.log(this)
+		}
+		const aClass = new AClass()
+		// arrow function은 this를 가지지 못함. 오로지 function으로서의 기능만 수행한다.
+		/*
+		const BClass = () => {
+			this.a = 10
+			this.b = 20
+			console.log(this)
+		}
+		const bClass = new BClass()
+		*/
+
+		const txt1 = `
+
+
+
+			ES6+에는 문자열을 그레이브(\`)로 감싸면 엔터 문자를 사용할 수 있습니다.
+			이렇게요
+		`
+
+		const txt2 = '\
+			\
+			\
+			ES5에는 엔터 문자를 사용하려면 이스케이프 문자를 사용해야합니다.\
+		'
+		console.log(txt1, txt2)
+
+		// 그레이브 내부에서 변수 사용 가능
+		console.log(`이것은 a 변수 입니다. ${a}`)
+
+		const es5obj = {a: a , b: b, c: c}
+		const es6obj = {a, b, c}
+		console.log(es5obj, es6obj)
+
+		const es5obj2 = {
+			test: function () {
+				console.log('es5 test')
+			}
+		}
+		const es6obj2 = {
+			test () {
+				console.log('es6 test')
+			}
+		}
+		es5obj2.test()
+		es6obj2.test()
+
+		for (var k in es5obj) {
+			console.log(k)
+		}
+		var es5arr = [1,2,3,4,5,6]
+		for (var k in es5arr) {
+			console.log(k, es5arr[k])
+		}
+		for (let v of [1,2,3,4,5,6]) {
+			console.log(v)
+		}
+	</script>
+</body>
+</html>

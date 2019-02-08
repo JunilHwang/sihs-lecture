@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		ul,li{list-style: none}
+		.slide{width:1000px;margin:0 auto;}
+		.slide ul{width:300%;display:flex;transition:1s}
+		.slide li{width:calc(100% / 3);height:300px;}
+		.slide li:nth-child(1){background:#ffa}
+		.slide li:nth-child(2){background:#faa}
+		.slide li:nth-child(3){background:#afa}
+	</style>
+</head>
+<body>
+	<div class="slide">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script>
+		var pos = 0
+		var len = document.querySelectorAll('.slide li').length
+		setInterval(function fun () {
+			pos = (pos + 1) % len
+			document.querySelector('.slide ul').style.marginLeft = -pos * 100 + '%'
+		}, 3000)
+	</script>
+</body>
+</html>

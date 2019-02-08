@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var obj = {a: 1, b: 2}
+		var obj2 = obj
+		var obj3 = {a: 1, b: 2}
+		obj2.a = 10
+		console.log(obj)
+		console.log(obj2)
+		console.log(obj === obj2)
+		console.log(obj === obj3)
+		obj2 = 10
+		console.log(obj)
+		console.log(obj2)
+
+		function fun1 (obj) {
+			obj.test = 'abc'
+		}
+		fun1(obj)
+		console.log(obj)
+	</script>
+</body>
+</html>

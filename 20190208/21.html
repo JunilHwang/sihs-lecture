@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var A = function () {
+		}
+		A.staticMethod = function () {
+			console.log('this is static method')
+		}
+		A.prototype.get = function () {
+			return this.a
+		}
+		A.prototype.set = function (v) {
+			this.a = v
+		}
+		A.prototype.getNum = function () {
+			console.log('num is ', this.number)
+			return this.number
+		}
+		A.prototype.setNum = function (val) {
+			console.log('num change ', val)
+			this.number = val
+		}
+		A.staticMethod()
+		console.log(A)
+		var obj = new A()
+		console.log(obj)
+		console.log(obj.get())
+		obj.set(10)
+		console.log(obj.get())
+		obj.setNum(10)
+		console.log(obj.getNum())
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		console.log('1 == "1"', 1 == "1")
+		console.log('false == 0', false == 0)
+		console.log('null == 0', null == 0)
+		console.log('false == null', false == null)
+		console.log('undefined == false', undefined == false)
+		console.log('undefined == 0', undefined == 0)
+		console.log('undefined == null', undefined == null)
+		console.log('"" == 0', "" == 0)
+		console.log('"" == false', "" == false)
+		console.log('"" == undefined', "" == undefined)
+		console.log('"" == null', "" == null)
+
+		console.log('1 === "1"', 1 === "1")
+		console.log('false === 0', false === 0)
+		console.log('null === 0', null === 0)
+		console.log('false === null', false === null)
+		console.log('undefined === false', undefined === false)
+		console.log('undefined === 0', undefined === 0)
+		console.log('undefined === null', undefined === null)
+		console.log('"" === 0', "" === 0)
+		console.log('"" === false', "" === false)
+		console.log('"" === undefined', "" === undefined)
+		console.log('"" === null', "" === null)
+
+		console.log("true + true", true + true)
+		console.log("true == 1", true == 1)
+		console.log('1'*1 === 1)
+		console.log('0'*1 === 0)
+		console.log(~10.213124124141)
+		// 0000 1010 10
+		// 1111 0101 -11 (1의 보수 = 0과 1 반전)
+		// 1111 0110 -10 (2의 보수 = 0과 1 반전 후 + 1)
+		
+		console.log([0, 1, 2, 3].indexOf(1))
+		console.log([0, 1, 2, 3].indexOf(2))
+		console.log([0, 1, 2, 10].indexOf(10))
+		console.log([0, 1, 2, 10].indexOf(-1))
+		console.log([0, 1, 2, 10].indexOf(-1) === -1)
+		console.log([0, 1, 2, 10].indexOf(-1) !== -1)
+		console.log(~[0, 1, 2, 10].indexOf(-1))
+		console.log(!~[0, 1, 2, 10].indexOf(-1))
+		console.log(!!~[0, 1, 2, 10].indexOf(-1))
+	</script>
+</body>
+</html>

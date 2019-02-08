@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		ul,li{list-style:none;}
+		.slide{width:1000px;height:300px;margin:20px auto;overflow:hidden;}
+		.slide li{height:300px;}
+		/* 페이드인/아웃 슬라이드 */
+		.slide.fade ul{position:relative;height:100%;}
+		.slide.fade li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;}
+		.slide.fade li.active{opacity:1;}
+		/* 슬라이드 장면들의 색상 */
+		.slide li:nth-child(1){background:#ffa;}
+		.slide li:nth-child(2){background:#faa;}
+		.slide li:nth-child(3){background:#afa;}
+		.slide li:nth-child(4){background:#aaf;}
+	</style>
+	<script>
+		const all = ele => document.querySelectorAll(ele)
+		const one = ele => document.querySelector(ele)
+		const slideLeft2Right = _ => {
+			let pos = 0
+			const len = all('.slide.left2right li').length
+			const target = one('.slide.left2right ul')
+			target.style.transition = '1s'
+			target.style.cssText = `transition:1s;width:calc(100% * ${len});display:flex;`
+			all('.slide.left2right li').forEach(ele => ele.style.cssText = `width:calc(100% / ${len});`)
+			setInterval(_ => {
+				pos = (pos + 1) % len
+				target.style.marginLeft = `${-pos*100}%`
+			}, 2000)
+		}
+		const slideTop2Btm = _ => {
+			let pos = 0
+			const len = all('.slide.top2btm li').length
+			const target = one('.slide.top2btm ul')
+			const h = one('.slide').clientHeight
+			target.style.transition = '1s'
+			target.style.cssText = `transition:1s;height:calc(100% * ${len});`
+			all('.slide.top2btm li').forEach(ele => ele.style.cssText = `height:calc(100% / ${len});`)
+			setInterval(_ => {
+				pos = (pos + 1) % len
+				target.style.marginTop = `${-pos*h}px`
+			}, 1500)
+		}
+		const slideFade = _ => {
+			let pos = 0
+			const arr = all('.slide.fade li')
+			const len = arr.length
+			arr[0].className = 'active'
+			all('.slide.fade li').forEach(ele => ele.style.transition = '0.5s')
+			setInterval(_ => {
+				pos = (pos + 1) % len
+				one('.slide.fade li.active').className = ''
+				arr[pos].className = 'active'
+			}, 1000)
+		}
+		window.onload = () => {
+			slideLeft2Right()
+			slideTop2Btm()
+			slideFade()
+		}
+	</script>
+</head>
+<body>
+	<div class="slide left2right">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="slide top2btm">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="slide fade">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

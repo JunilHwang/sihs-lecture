@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="#" id="test">test</a>
+	<script>
+		// js는 일급함수를 사용한다.
+		
+		// 1. 변수에 담을 수 있다.
+		var a = function () {
+			console.log('function a')}
+		a()
+
+		// 2. 매개변수로 넘길 수 있다.
+		function b (callback) {
+			console.log('function b')
+			console.log('and')
+			callback()
+		}
+
+		b(a)
+		b(function () {
+			console.log('익명함수')
+		})
+
+		// 3. 함수를 반환할 수 있다.	
+		function c () {
+			console.log('function c')
+			return function () {
+				console.log('function c의 return fucntion')
+			}
+		}
+		var d = c()
+		d()
+
+		document
+			.getElementById('test')
+			.addEventListener('click', c)
+	</script>
+</body>
+</html>

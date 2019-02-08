@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    /* tag 선택 */
+    div{border:1px solid #000;margin:10px;}
+    /* id 선택 */
+    #box{background:#09F;}
+    /* class 선택 */
+    .box{font-size:30px;}
+    /* 자손 선택 */
+    .box span {color:#90F}
+    /* 자식 선택 */
+    .box>span {background:#FFF;color:#09F}
+  </style>
+</head>
+<body>
+<div id="box" class="box">
+  첫 번째 div <br>
+  이것은 <span> .box 밑에 있는 span 입니다. </span>
+  <p>
+    이것은 <span>.box 밑에 있는 p 밑에 있는 span 입니다.</span>
+  </p>
+</div>
+<div class="box">
+  두 번째 div
+  <p>
+    이것은 <span>.box 밑에 있는 p 밑에 있는 span 입니다.</span>
+  </p>
+</div>
+<div>세 번째 div</div>
+<div class="box">네 번째 div</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		class CLS1 {
+			constructor () {
+				this.a = 10
+				this.b = 20
+			}
+
+			static getInstance () {
+				return CLS1.instance
+			}
+
+			static init () {
+				CLS1.instance = new CLS1()
+			}
+		}
+		CLS1.init()
+		var a = new CLS1()
+		var b = a
+		var c = CLS1.getInstance()
+		var d = CLS1.getInstance()
+		a.a = 30
+		console.log(a, b)
+		console.log(a === b)
+		c.a = 40
+		console.log(c, d)
+		console.log(c === d)
+	</script>
+</body>
+</html>
