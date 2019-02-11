@@ -4,16 +4,10 @@ var slhc = slhc || {}
 	const one = ele => document.querySelector(ele)
 	const all = ele => document.querySelectorAll(ele)
 	const addClass = (ele, addClassName) => {
-		// ex) 'animation top2btm' => ['animation', 'top2btm']
 		let classList = ele.className.split(' ')
 		const idx = classList.indexOf(addClassName)
-
-		// ex) addClassName : animation => 실행 X
 		if (idx === -1) {
-			// addClassName : animationBeofre
-			// => ['animation', 'top2btm', 'animationBefore']
 			classList.push(addClassName)
-			// join은 Array2String 역할. 'animation top2btm animationBefore'
 			ele.className = classList.join(' ')
 		}
 	}
