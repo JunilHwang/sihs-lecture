@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="/">index</a>
+	<a href="/login">login</a>
+	<a href="/register">register</a>
+	<form action="/login" method="post" onsubmit="loginSubmit(this); return false;">
+		<p><label>아이디 <input type="text" name="id"></label></p>
+		<p><label>비밀번호 <input type="text" name="pw"></label></p>
+		<p><button type="submit">전송</button></p>
+	</form>
+	<script>
+		const loginSubmit = frm => {
+			const data = {
+				id: frm.id.value,
+				pw: frm.pw.value
+			}
+			fetch('/api/login', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data)
+			})
+		}
+	</script>
+</body>
+</html>

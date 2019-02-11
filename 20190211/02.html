@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        * { margin:0; padding:0; }
+        ul, li { list-style:none; }
+        .slide { width:1200px;margin:20px auto;height:400px; position:relative;overflow:hidden;}
+        .slide ul{height:400px;position:relative;}
+        .slide li{height:400px;}
+        .slide li:nth-child(1){background:#faa;}
+        .slide li:nth-child(2){background:#afa;}
+        .slide li:nth-child(3){background:#aaf;}
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div class="slide" data-type="right2left" data-delay="1000" data-time="300" data-arrow="false" data-bullet="false">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="slide" data-type="btm2top" data-delay="1500" data-time="500" data-arrow="true" data-bullet="false">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="slide" data-type="fade" data-delay="2000" data-time="1000" data-arrow="true" data-bullet="true">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        function slide () {
+            $('.slide').each( function (idx, target) {
+                var obj      = $(target).find('ul')
+                var len      = $(target).find('li').length
+                var playTime = $(target).data('time')
+                var delay    = $(target).data('delay')
+                var type     = $(target).data('type')
+                var arrow    = $(target).data('arrow')
+                var bullet   = $(target).data('bullet')
+                var pos      = 0
+                var timer
+ 
+                obj.find('li').eq(pos).addClass('active')
+                obj.css('position', 'relative')
+
+                if (arrow) {
+                    var arrowStyle = 'position:absolute; top:calc(50% - 25px); height:50px; display:block; line-height:50px;'
+                    var arrowLeft  = 'left:0;'
+                    var arrowRight = 'right:0;'
+                    $('<a href="#" class="arrow left">왼쪽</a>').attr('style', arrowStyle + arrowLeft).appendTo(target)
+                    $('<a href="#" class="arrow right">오른쪽</a>').attr('style', arrowStyle + arrowRight).appendTo(target)
+                }
+
+                if (bullet) {
+                    var wrapStyle  = 'position:absolute; bottom:20px; left:0; right:0; text-align:center;'
+                    var childStyle = 'width:20px; height:20px; background:#666; transition:0.5s; display:inline-block; margin:0 3px; border-radius:20px'
+                    var bulletWrap = $('<div class="pos"></div>').attr('style', wrapStyle)
+                    for (var i = 0; i < len; i++) {
+                        var bulletChild = $('<a href="#"></a>').attr('style', childStyle)
+                        if (i == 0) bulletChild.addClass('active').css('background', '#000')
+                        bulletChild.appendTo(bulletWrap)
+                    }
+                    bulletWrap.appendTo(target)
+                }
+ 
+                if (type == 'right2left')
+                    obj.css({display:'flex', width:len*100+"%"}).find('li').css({width:100/len+"%"})
+                else if(type == 'fade')
+                    obj.find('li').css({position:'absolute',left:0,top:0,width:'100%',height:'100%'}).not('.active').hide()
+ 
+                function play () {
+                    clearTimeout(timer)
+
+                    if (++pos >= len)  pos = 0
+                    else if (pos < 0) pos = len-1
+                    $(target).find(".pos a.active").removeClass('active').css("background","#666")
+                    $(target).find(".pos a").eq(pos).addClass('active').css("background","#000")
+                    switch (type) {
+                        case 'fade' :
+                            obj.find('li.active').removeClass('active').stop().fadeOut(playTime)
+                            obj.find('li').eq(pos).addClass('active').stop().fadeIn(playTime)
+                        break;
+                        case 'right2left' :
+                            obj.stop().animate({
+                                marginLeft:-pos*100+'%'
+                            }, playTime)
+                        break;
+                        case 'btm2top' :
+                            obj.stop().animate({
+                                top:-pos*100+'%'
+                            }, playTime)
+                        break;
+                    }
+                    timer = setTimeout(play, delay)
+                }
+
+                $(target).find('.arrow').on('click', function () {
+                    if ($(this).hasClass('left')) pos -= 2
+                    play()
+                    return false
+                })
+
+                $(target).find('.pos a').on('click', function () {
+                    pos = $(this).index() - 1
+                    play()
+                    return false
+                })
+ 
+                timer = setTimeout(play, delay)
+            } )
+        }
+        $(slide)
+</script>
+</body>
+</html>
