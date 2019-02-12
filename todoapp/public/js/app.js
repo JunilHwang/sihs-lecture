@@ -6,8 +6,8 @@ const create = (name, attr) => {
   for(const k in attr) {
     const v = attr[k]
     switch (k) {
-      case 'html' : ele.innerHTML = v; break
-      case 'event' : for (const e in v) ele.addEventListener(e, v[e]) break;
+      case 'html' : ele.innerHTML = v; break;
+      case 'event' : for (const e in v) ele.addEventListener(e, v[e]); break;
       default : ele.setAttribute(k, v); break
     }
   }
