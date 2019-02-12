@@ -74,6 +74,7 @@ class Renderer {
   }
 
   setTask (v) {
+    const $this = this
     return async e => {
       v.state = !v.state
       await $this.model.setTask(v, v.idx)
