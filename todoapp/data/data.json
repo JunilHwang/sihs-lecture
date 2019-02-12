@@ -1,0 +1,1 @@
+{"folder":[{"name":"1234"},{"name":"456"}],"task":[{"name":"1234","state":true,"parent":"0","idx":0},{"name":"6","state":true,"parent":"1","idx":5},{"name":"789","state":false,"parent":"0"},{"name":"1234","state":false,"parent":"1"},{"name":"5","state":false,"parent":"0"},{"name":"6","state":false,"parent":"1"},{"name":"7","state":true,"parent":"1","idx":6}]}
