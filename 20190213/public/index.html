@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+<section class="folder">
+	<h2>Folder List</h2>
+	<input type="text" class="folder-input" size="20" placeholder="폴더 이름을 입력해주세요">
+	<section class="folder-list"></section>
+	<section class="task-list"></section>
+</section>
+<script>
+	// dom function
+	const one = ele => document.querySelector(ele)
+	const all = ele => document.querySelectorAll(ele)
+	const create = (name, attr) => {
+		const ele = document.createElement(name)
+		for (const attrName in attr ) {
+			const v = attr[attrName]
+			switch (attrName) {
+				case 'html' : ele.innerHTML = v; break;
+				case 'event' : 
+					for (const eventName in v) {
+						ele.addEventListener(eventName, v[eventName])
+					}
+				break;
+				default : ele.setAttribute(attrName, v); break;
+			}
+		}
+		return ele
+	}
+
+	// Tag 선택
+	const folderInput = one('.folder-input')
+	const folderList  = one('.folder-list')
+	const taskList    = one('.task-list')
+
+	// database
+	const data = {
+		folder: [
+			{name: 'test1'},
+			{name: 'test2'}
+		],
+		task: [
+			{
+				parent: 0,
+				name: 'test1-1',
+				state: false
+			}
+		]
+	}
+
+	// addFolder
+	const addFolder = e => {
+		if (e.keyCode === 13) {
+			data.folder.push({name: e.target.value})
+			e.target.value = ''
+			e.target.focus()
+			folderRender(data.folder)
+		}
+	}
+
+	// getTaskList
+	const getTaskList = parent => {
+		const list = []
+		data.task.forEach((v, idx) => {
+			if (v.parent == parent) {
+				v.idx = idx
+				list.push(v)
+			}
+		})
+		return list
+	}
+
+	// taskWrapRender
+	const taskWrapRender = parent => e => {
+		const folder = data.folder[parent]
+		const title = create('h3', {html: folder.name})
+		const ul    = create('ul')
+		const input = create('input', {
+			size: 20,
+			event: {
+				keyup: inputEvent => {
+					if (inputEvent.keyCode === 13) {
+						const name = inputEvent.target.value
+						const state = false
+						data.task.push({name, state, parent})
+						e.target.click()
+					}
+				}
+			}
+		})
+		const close = create('button', {
+			type: 'button', html: '닫기', event: {
+				click: e => taskList.innerHTML = ''
+			}
+		})
+		const task = getTaskList(parent)
+		task.forEach(v => ul.appendChild(taskRender(v)))
+		taskList.innerHTML = ''
+		for (const ele of [title, input, ul, close]) taskList.appendChild(ele)
+	}
+
+	// taskRender
+	const taskRender = ele => create('li', {
+		html: ele.name,
+		style: ele.state ? 'color:#09F' : '',
+		event: {
+			click: e => {
+				ele.state = !ele.state
+				data.task[ele.idx] = ele
+				e.target.style.color = ele.state ? '#09f' : ''
+			}
+		}
+	})
+
+	// Renderer
+	const folderRender = folder => {
+		const ul = create('ul')
+		folder.forEach((v, k) => {
+			ul.appendChild(create('li', {
+				html: v.name,
+				event: { click: taskWrapRender(k) }
+			}))
+		})
+		folderList.innerHTML = ''
+		folderList.appendChild(ul)
+	}
+
+	window.onload = e => {
+		folderInput.onkeyup = addFolder
+		folderRender(data.folder)
+	}
+</script>
+</body>
+</html>
