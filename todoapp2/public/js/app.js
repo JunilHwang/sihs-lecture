@@ -1,30 +1,3 @@
-/* /public/js/app.js */
-
-// dom function
-const one = ele => document.querySelector(ele)
-const all = ele => document.querySelectorAll(ele)
-const create = (name, attr) => {
-	const ele = document.createElement(name)
-	for (const attrName in attr ) {
-		const v = attr[attrName]
-		switch (attrName) {
-			case 'html' : ele.innerHTML = v; break;
-			case 'event' : 
-				for (const eventName in v) {
-					ele.addEventListener(eventName, v[eventName])
-				}
-			break;
-			default : ele.setAttribute(attrName, v); break;
-		}
-	}
-	return ele
-}
-
-// Tag 선택
-const folderInput = one('.folder-input')
-const folderList  = one('.folder-list')
-const taskList    = one('.task-list')
-
 // Ajax
 class Ajax {
 	static async get (url) {
@@ -51,79 +24,81 @@ const model = new class {
 	async setTask (task) { await Ajax.set('/api/task/' + task.idx, { task }, 'put') }
 }
 
-// addFolder
-const addFolder = async e => {
-	if (e.keyCode === 13) {
-		const folder = await model.getFolder()
-		const newFolder = {name: e.target.value}
-		folder.push(newFolder)
-		await model.setFolder(newFolder)
-		e.target.value = ''
-		e.target.focus()
-		folderRender(folder)
+
+const bus = new Vue({
+	data: {
+		parent: null,
+		folder: null,
+		task: []
 	}
-}
+})
 
-// taskWrapRender
-const taskWrapRender = parent => async e => {
-	const folder = await model.getFolder()
-	const title = create('h3', {html: folder[parent].name})
-	const ul    = create('ul')
-	const input = create('input', {
-		size: 20,
-		event: {
-			keyup: async inputEvent => {
-				if (inputEvent.keyCode === 13) {
-					const name = inputEvent.target.value
-					const state = false
-					const task = await model.getTask(parent)
-					const v = {name, state, parent}
-					task.push(v)
-					await model.addTask(v)
-					e.target.click()
-				}
-			}
+Vue.component('folder-list', {
+	template: `
+		<section>
+			<h3>Folder List</h3>
+			<input type="text" @keyup.enter="addFolder" size="20" />
+			<ul v-if="folder || folder.length">
+				<li v-for="(v, idx) in folder" v-index="idx" v-html="v.name" @click="taskRender(idx)" />
+			</ul>
+		</section>
+	`,
+	async created () {
+		this.folder = await model.getFolder()
+	},
+	data () {
+		return {
+			folder: []
 		}
-	})
-	const close = create('button', {
-		type: 'button', html: '닫기', event: {
-			click: e => taskList.innerHTML = ''
-		}
-	})
-	const task = await model.getTask(parent)
-	task.forEach(v => ul.appendChild(taskRender(v)))
-	taskList.innerHTML = ''
-	for (const ele of [title, input, ul, close]) taskList.appendChild(ele)
-}
-
-// taskRender
-const taskRender = ele => create('li', {
-	html: ele.name,
-	style: ele.state ? 'color:#09F' : '',
-	event: {
-		click: async e => {
-			ele.state = !ele.state
-			await model.setTask(ele)
-			e.target.style.color = ele.state ? '#09f' : ''
+	},
+	methods: {
+		async addFolder (e) {
+			const name = e.target.value
+			this.folder.push({ name })
+			await model.setFolder({ name })
+			e.target.value = ''
+			e.target.focus()
+		},
+		async taskRender (idx) {
+			bus.folder = (await model.getFolder())[idx]
+			bus.task = await model.getTask(idx)
+			bus.parent = idx
 		}
 	}
 })
 
-// Renderer
-const folderRender = folder => {
-	const ul = create('ul')
-	folder.forEach((v, k) => {
-		ul.appendChild(create('li', {
-			html: v.name,
-			event: { click: taskWrapRender(k) }
-		}))
-	})
-	folderList.innerHTML = ''
-	folderList.appendChild(ul)
-}
+Vue.component('task-list', {
+	template: `
+		<section v-if="bus.folder">
+			<h3 v-html="bus.folder.name" />
+			<input type="text" @keyup.enter="addTask" />
+			<ul v-if="bus.task.length">
+				<li v-for="(v, k) in bus.task"
+					v-index="k"
+					v-html="v.name"
+					:style="{color: v.state ? '#09F' : null}"
+					@click="toggleState(v)" />
+			</ul>
+		</section>
+	`,
+	data () {
+		return {
+			task: []
+		}
+	},
+	methods: {
+		async addTask (e) {
+			const task = {name: e.target.value, state: false, parent: bus.parent}
+			await model.addTask(task)
+			bus.task.push(task)
+			e.target.value = ''
+			e.target.focus()
+		},
+		async toggleState (v) {
+			v.state = !v.state
+			await model.setTask(v)
+		}
+	}
+})
 
-window.onload = async e => {
-	folderInput.onkeyup = addFolder
-	const folder = await model.getFolder()
-	folderRender(folder)
-}
+new Vue({ el: '#app' })
